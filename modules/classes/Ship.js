@@ -10,15 +10,25 @@
 
 class Ship {
   constructor(length) {
-    this.hits = 0;
+    this._hits = 0;
     this.length = length;
   }
 
+  get hits() {
+    return this._hits;
+  }
+
+  set hits(n) {
+    this._hits = n;
+  }
+
   hit() {
-    if (this.hits < this.length) this.hits++;
+    if (this._hits < this.length) this._hits++;
   }
 
   isSunk() {
-    return this.hits >= this.length;
+    return this._hits >= this.length;
   }
 }
+
+export default Ship;

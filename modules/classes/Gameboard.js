@@ -78,16 +78,14 @@ class Gameboard {
             console.log('all ships sunk! game over!');
           }
         }
-        return 'hit';
       }
     });
 
     // not a hit, add to misses
-    if (this.locationState.get(attack) === 'unknown') {
+    if (this.locationState.get(attack) !== 'hit') {
       this.locationState.set(attack, 'miss');
       // console.log(this.locationState.get(attack));
       this.missedAttacks++;
-      return 'miss';
     }
   }
 

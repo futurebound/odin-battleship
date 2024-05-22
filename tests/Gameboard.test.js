@@ -32,3 +32,23 @@ test('receiveAttack() properly updates to correct misses on hit', () => {
   expect(board.hasMissedAttack(attack)).toBe(false);
   expect(board.locationState.get(JSON.stringify([0, 1]))).toBe('hit');
 });
+
+test('gameIsOver() properly triggers with single sunk ship', () => {
+  const attack = [0, 1]; // hit
+  const board = setupBasicBoard();
+  expect(board.numMissedAttacks()).toBe(0);
+  board.receiveAttack(attack); // should hit
+  expect(board.numMissedAttacks()).toBe(0);
+  expect(board.hasMissedAttack(attack)).toBe(false);
+  expect(board.locationState.get(JSON.stringify([0, 1]))).toBe('hit');
+
+  expect(board.gameIsOver()).toBe(false);
+  board.receiveAttack([0, 0]); // should hit
+  expect(board.locationState.get(JSON.stringify([0, 0]))).toBe('hit');
+
+  expect(board.gameIsOver()).toBe(false);
+  board.receiveAttack([0, 2]); // should hit
+  expect(board.locationState.get(JSON.stringify([0, 2]))).toBe('hit');
+
+  expect(board.gameIsOver()).toBe(true);
+});

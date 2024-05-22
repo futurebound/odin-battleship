@@ -17,22 +17,30 @@ class Gameboard {
     this.missedAttacks = 0;
     this.sunkShips = 0;
     this._ships = new Map();
-    this.locationState = this.initializeBoardState();
+    this.boardState = this.initializeBoardState();
   }
 
   /**
    * Populates and returns a Map representing initial unknown board state
    */
   initializeBoardState() {
-    const locationState = new Map();
+    const boardState = new Map();
     for (let x = 0; x < this.size; x++) {
       for (let y = 0; y < this.size; y++) {
         const coordinate = [x, y];
-        locationState.set(JSON.stringify(coordinate), 'unknown');
+        boardState.set(JSON.stringify(coordinate), 'unknown');
       }
     }
 
-    return locationState;
+    return boardState;
+  }
+
+  getBoardState() {
+    return this.boardState;
+  }
+
+  getBoardSize() {
+    return this.size;
   }
 
   /**
@@ -54,13 +62,13 @@ class Gameboard {
   }
 
   hasMissedAttack(attack) {
-    return this.locationState.get(JSON.stringify(attack)) === 'miss';
+    return this.boardState.get(JSON.stringify(attack)) === 'miss';
   }
 
   receiveAttack(attack) {
     // confirm that attack has not already been made on coordinate to simplify logic
     attack = JSON.stringify(attack); // for equality checks
-    if (this.locationState.get(attack) !== 'unknown') {
+    if (this.boardState.get(attack) !== 'unknown') {
       throw new Error('invalid input: attack coordinate already entered');
     }
 
@@ -71,7 +79,7 @@ class Gameboard {
       if (coordinates.has(attack)) {
         ship.hit();
         // console.log(ship);
-        this.locationState.set(attack, 'hit');
+        this.boardState.set(attack, 'hit');
         if (ship.isSunk()) {
           this.sunkShips++;
           if (this.gameIsOver()) {
@@ -82,9 +90,9 @@ class Gameboard {
     });
 
     // not a hit, add to misses
-    if (this.locationState.get(attack) !== 'hit') {
-      this.locationState.set(attack, 'miss');
-      // console.log(this.locationState.get(attack));
+    if (this.boardState.get(attack) !== 'hit') {
+      this.boardState.set(attack, 'miss');
+      // console.log(this.boardState.get(attack));
       this.missedAttacks++;
     }
   }

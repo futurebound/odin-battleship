@@ -1,5 +1,5 @@
-import Gameboard from '../modules/classes/Gameboard';
-import Ship from '../modules/classes/Ship';
+import Gameboard from '../src/modules/classes/Gameboard';
+import Ship from '../src/modules/classes/Ship';
 
 const setupBasicBoard = () => {
   const board = new Gameboard();

@@ -1,0 +1,23 @@
+.gameboard {
+  display: grid;
+  grid-template: repeat(10, 100px) / repeat(10, 100px);
+  border: 2px solid black;
+}
+
+.cell {
+  border: 2px solid black;
+  min-width: 100px;
+  min-height: 100px;
+}
+
+.hit {
+  background-color: firebrick;
+}
+
+.miss {
+  background-color: antiquewhite;
+}
+
+.unknown {
+  background-color: lightslategray;
+}

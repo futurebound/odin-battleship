@@ -1,4 +1,4 @@
-import Ship from '../modules/classes/Ship';
+import Ship from '../src/modules/classes/Ship';
 
 test('big ship not sunk with less than 4 hits', () => {
   const bigShip = new Ship(4);

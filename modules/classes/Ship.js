@@ -11,15 +11,23 @@
 class Ship {
   constructor(length) {
     this._hits = 0;
-    this.length = length;
+    this._length = length;
   }
 
   get hits() {
     return this._hits;
   }
 
-  set hits(n) {
-    this._hits = n;
+  set hits(hits) {
+    this._hits = hits;
+  }
+
+  get length() {
+    return this._length;
+  }
+
+  set length(length) {
+    this._length = length;
   }
 
   hit() {

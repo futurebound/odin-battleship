@@ -1,7 +1,9 @@
 /**
  * Takes in a Gameboard and returns a div containing the rendered board state.
+ * Renders a view of one's own board state, including ship locations and opponent
+ * attacks as either hits or misses.
  */
-const renderGameboard = (board) => {
+const renderSelfBoard = (board) => {
   const boardDiv = document.createElement('div');
   boardDiv.classList.add('gameboard');
 
@@ -32,4 +34,4 @@ const renderGameboard = (board) => {
   return boardDiv;
 };
 
-export default renderGameboard;
+export default renderSelfBoard;

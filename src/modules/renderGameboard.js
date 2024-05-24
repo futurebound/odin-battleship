@@ -13,7 +13,7 @@ const renderGameboard = (board) => {
       const coordinateState = boardStateMap.get(JSON.stringify(coordinate));
 
       const cell = document.createElement('div');
-      cell.classList.add(cell);
+      cell.classList.add('cell');
       cell.dataset.x = x;
       cell.dataset.y = y;
 

@@ -61,25 +61,29 @@ class Gameboard {
     return this.missedAttacks;
   }
 
-  hasMissedAttack(attack) {
-    return this.boardState.get(JSON.stringify(attack)) === 'miss';
+  hasMissedAttack(coordinate) {
+    return this.boardState.get(JSON.stringify(coordinate)) === 'miss';
   }
 
-  receiveAttack(attack) {
+  getCoordinateState(coordinate) {
+    return this.boardState.get(JSON.stringify(coordinate));
+  }
+
+  receiveAttack(coordinate) {
     // confirm that attack has not already been made on coordinate to simplify logic
-    attack = JSON.stringify(attack); // for equality checks
-    if (this.boardState.get(attack) !== 'unknown') {
+    coordinate = JSON.stringify(coordinate); // for equality checks
+    if (this.boardState.get(coordinate) !== 'unknown') {
       throw new Error('invalid input: attack coordinate already entered');
     }
 
     // check all ships to see if attack is a hit on any
-    this._ships.forEach((coordinates, ship) => {
+    this._ships.forEach((shipCoordinates, ship) => {
       // console.log(ship);
       // console.log(coordinates);
-      if (coordinates.has(attack)) {
+      if (shipCoordinates.has(coordinate)) {
         ship.hit();
         // console.log(ship);
-        this.boardState.set(attack, 'hit');
+        this.boardState.set(coordinate, 'hit');
         if (ship.isSunk()) {
           this.sunkShips++;
           if (this.gameIsOver()) {
@@ -90,8 +94,8 @@ class Gameboard {
     });
 
     // not a hit, add to misses
-    if (this.boardState.get(attack) !== 'hit') {
-      this.boardState.set(attack, 'miss');
+    if (this.getCoordinateState(coordinate) !== 'hit') {
+      this.boardState.set(coordinate, 'miss');
       // console.log(this.boardState.get(attack));
       this.missedAttacks++;
     }

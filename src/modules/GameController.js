@@ -39,7 +39,7 @@ class GameController {
     ]);
 
     const playerBoardDiv = renderSelfBoard(playerBoard);
-    const opponentBoardDiv = renderOpponentBoard(opponentBoard);
+    const opponentBoardDiv = renderSelfBoard(opponentBoard);
     contentDiv.appendChild(playerBoardDiv);
     contentDiv.appendChild(opponentBoardDiv);
   }

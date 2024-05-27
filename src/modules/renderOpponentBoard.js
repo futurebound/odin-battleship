@@ -10,15 +10,15 @@ const renderOpponentBoard = (board) => {
 
   const size = board.getBoardSize();
   const boardStateMap = board.getBoardState();
-  for (let x = 0; x < size; x++) {
-    for (let y = 0; y < size; y++) {
-      const coordinate = [x, y];
+  for (let row = 0; row < size; row++) {
+    for (let col = 0; col < size; col++) {
+      const coordinate = [col, row];
       const coordinateState = boardStateMap.get(JSON.stringify(coordinate));
 
       const cell = document.createElement('div');
       cell.classList.add('cell');
-      cell.dataset.x = x;
-      cell.dataset.y = y;
+      cell.dataset.col = col;
+      cell.dataset.row = row;
 
       if (coordinateState === 'hit') {
         cell.classList.add('hit');

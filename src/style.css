@@ -14,8 +14,16 @@
   background-color: firebrick;
 }
 
+.empty {
+  background-color: white;
+}
+
 .miss {
   background-color: antiquewhite;
+}
+
+.ship {
+  background-color: green;
 }
 
 .unknown {

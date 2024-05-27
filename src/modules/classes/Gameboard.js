@@ -25,9 +25,9 @@ class Gameboard {
    */
   initializeBoardState() {
     const boardState = new Map();
-    for (let x = 0; x < this.size; x++) {
-      for (let y = 0; y < this.size; y++) {
-        const coordinate = [x, y];
+    for (let row = 0; row < this.size; row++) {
+      for (let col = 0; col < this.size; col++) {
+        const coordinate = [col, row];
         boardState.set(JSON.stringify(coordinate), 'unknown');
       }
     }
@@ -51,9 +51,15 @@ class Gameboard {
     if (!this._ships.has(ship)) {
       const shipCoordinates = new Set();
       coordinates.forEach((coordinate) => {
+        console.log(coordinate);
         shipCoordinates.add(JSON.stringify(coordinate));
       });
       this._ships.set(ship, shipCoordinates);
+
+      shipCoordinates.forEach((coordinate) => {
+        console.log(coordinate);
+        this.boardState.set(coordinate, 'ship');
+      });
     }
   }
 

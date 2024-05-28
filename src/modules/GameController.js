@@ -43,6 +43,10 @@ class GameController {
       [3, 4],
     ]);
 
+    this.renderBoards(playerBoard, opponentBoard); // TODO: put this in own module
+  }
+
+  renderBoards(playerBoard, opponentBoard) {
     const contentDiv = document.getElementById('content');
     const player1Div = document.createElement('div');
     player1Div.classList.add('player1');
@@ -57,46 +61,13 @@ class GameController {
     player2Div.appendChild(player2Name);
 
     const playerBoardDiv = renderSelfBoard(playerBoard);
-    playerBoardDiv.id = 'player-self';
     const opponentBoardDiv = renderSelfBoard(opponentBoard);
-    opponentBoardDiv.id = 'opponent-self';
-    player1Div.appendChild(playerBoardDiv);
-    player2Div.appendChild(opponentBoardDiv);
-
-    //testing
-    const opponentViewDiv = renderOpponentBoard(opponentBoard);
-    opponentViewDiv.id = 'opponent-board';
-    const playerViewDiv = renderOpponentBoard(playerBoard);
-    playerViewDiv.id = 'player-board';
-    player1Div.appendChild(opponentViewDiv);
-    player2Div.appendChild(playerViewDiv);
-
-    contentDiv.appendChild(player1Div);
-    contentDiv.appendChild(player2Div);
-  }
-
-  renderBoards() {
-    const contentDiv = document.getElementById('content');
-    const player1Div = document.createElement('div');
-    player1Div.classList.add('player1');
-    const player1Name = document.createElement('h1');
-    player1Name.textContent = 'player1';
-    player1Div.appendChild(player1Name);
-
-    const player2Div = document.createElement('div');
-    player2Div.classList.add('player2');
-    const player2Name = document.createElement('h1');
-    player2Name.textContent = 'player2';
-    player2Div.appendChild(player2Name);
-
-    const playerBoardDiv = renderSelfBoard(this.player.getBoard());
-    const opponentBoardDiv = renderSelfBoard(this.opponent.getBoard());
     player1Div.appendChild(opponentBoardDiv);
     player2Div.appendChild(playerBoardDiv);
 
     // testing
-    const opponentViewDiv = renderOpponentBoard(opponent);
-    const playerViewDiv = renderOpponentBoard(player);
+    const opponentViewDiv = renderOpponentBoard(opponentBoard);
+    const playerViewDiv = renderOpponentBoard(playerBoard);
     player1Div.appendChild(opponentViewDiv);
     player2Div.appendChild(playerViewDiv);
 

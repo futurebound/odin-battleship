@@ -47,7 +47,15 @@ class GameController {
   }
 
   renderBoards(playerBoard, opponentBoard) {
-    const contentDiv = document.getElementById('content');
+    const container = document.getElementById('container');
+    const turnH1 = document.createElement('h1');
+    turnH1.textContent = `${this.currentPlayer._name}'s turn`;
+    container.appendChild(turnH1);
+
+    const contentDiv = document.createElement('div');
+    contentDiv.id = 'content';
+    container.appendChild(contentDiv);
+
     const player1Div = document.createElement('div');
     player1Div.classList.add('player1');
     const player1Name = document.createElement('h1');

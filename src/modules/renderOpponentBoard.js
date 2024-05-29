@@ -28,6 +28,11 @@ const renderOpponentBoard = (board) => {
         cell.classList.add('unknown');
       }
 
+      cell.addEventListener('click', () => {
+        console.log(`cell row=${row} col=${col} clicked`);
+        board.receiveAttack([row, col]);
+      });
+
       boardDiv.appendChild(cell);
     }
   }

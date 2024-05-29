@@ -60,6 +60,9 @@ class Gameboard {
         console.log(coordinate);
         this.boardState.set(coordinate, 'ship');
       });
+
+      console.log('ending shipCoordinates:');
+      console.log(shipCoordinates);
     }
   }
 
@@ -78,7 +81,9 @@ class Gameboard {
   receiveAttack(coordinate) {
     // confirm that attack has not already been made on coordinate to simplify logic
     coordinate = JSON.stringify(coordinate); // for equality checks
-    if (this.boardState.get(coordinate) !== 'unknown') {
+    const state = this.getCoordinateState(coordinate);
+    console.log(`state at coordinate ${coordinate} is ${state}`);
+    if (state !== 'unknown' && state !== 'ship') {
       throw new Error('invalid input: attack coordinate already entered');
     }
 
